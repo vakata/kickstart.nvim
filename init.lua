@@ -172,6 +172,8 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '→  ', space = '·', trail = '·', precedes = '⇠', extends = '⇢', nbsp = '×' }
 vim.opt.softtabstop = 4
 vim.cmd 'set noshowmode'
+vim.cmd 'set autoindent'
+vim.cmd 'set cin'
 vim.keymap.set('n', 'H', '^')
 vim.keymap.set('n', 'L', '$')
 vim.keymap.set('n', 'Х', '^')
@@ -265,10 +267,19 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  --'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'mhinz/vim-startify',
   'tpope/vim-commentary',
-  'Yggdroot/indentLine',
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
+    config = function()
+      require('ibl').setup()
+    end,
+  },
   'itchyny/lightline.vim',
   'mengelbrecht/lightline-bufferline',
   {
