@@ -172,6 +172,13 @@ require('lazy').setup({
   'itchyny/lightline.vim',
   'mengelbrecht/lightline-bufferline',
   {
+    'Bekaboo/dropbar.nvim',
+    -- optional, but required for fuzzy finder support
+    dependencies = {
+      'nvim-telescope/telescope-fzf-native.nvim'
+    }
+  },
+  {
     'catppuccin/vim',
     priority = 1000,
     config = function()
@@ -670,10 +677,15 @@ require('lazy').setup({
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
-          ['<CR>'] = cmp.mapping.confirm { select = true },
+          ['<CR>'] = cmp.mapping.confirm { select = false },
           ['<Tab>'] = cmp.mapping.select_next_item(),
           ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
+          ['<esc>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then cmp.abort()
+            else vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, true, true), "n", true)
+            end
+          end),
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
           --  completions whenever it has completion options available.
