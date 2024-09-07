@@ -405,6 +405,7 @@ require('lazy').setup({
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -641,6 +642,7 @@ require('lazy').setup({
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
     },
     config = function()
       -- See `:help cmp`
@@ -720,6 +722,7 @@ require('lazy').setup({
             group_index = 0,
           },
           { name = 'nvim_lsp' },
+          { name = 'nvim_lsp_signature_help' },
           { name = 'luasnip' },
           { name = 'path' },
         },
