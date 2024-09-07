@@ -546,7 +546,7 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         intelephense = {},
-        tsserver = {},
+        -- ts_ls = {},
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
@@ -595,6 +595,9 @@ require('lazy').setup({
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
+            if server_name == "tsserver" then
+              server_name = "ts_ls"
+            end
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
